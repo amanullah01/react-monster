@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -7,27 +6,32 @@ class App extends Component {
     super();
 
     this.state = {
-      string: "Aman",
-      next: "Khan"
+      monsters: [
+        {
+          id: 1,
+          name: "Frank"
+        },
+        {
+          id: 2,
+          name: "Dracula"
+        },
+        {
+          id: 3,
+          name: "Zoombie"
+        },
+        {
+          id: 4,
+          name: "Killer"
+        }
+      ]
     };
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Good Morning {this.state.string}</p>
-          <button
-            onClick={() =>
-              this.setState({
-                next: this.state.string,
-                string: this.state.next
-              })
-            }
-          >
-            Change text
-          </button>
-        </header>
+        {this.state.monsters.map(monster => (
+          <h1 key={monster.id}>{monster.name}</h1>
+        ))}
       </div>
     );
   }
