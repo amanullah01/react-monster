@@ -13,6 +13,10 @@ class App extends Component {
       monsters: [],
       searchField: ""
     };
+
+    //bind 'this' to handleChange function
+    //if we use arror function es6, then we do not need to bind the function
+    //this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +27,11 @@ class App extends Component {
       });
   }
 
+  //search component on change event fire
+  handleChange = e => {
+    this.setState({ searchField: e.target.value });
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonsters = monsters.filter(monster =>
@@ -32,9 +41,7 @@ class App extends Component {
       <div className="App">
         <SearchBox
           placeholder="Search monsters"
-          handleChange={e => {
-            this.setState({ searchField: e.target.value });
-          }}
+          handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonsters} />
       </div>
